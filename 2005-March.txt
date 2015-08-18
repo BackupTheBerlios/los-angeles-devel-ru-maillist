@@ -1,0 +1,2276 @@
+From Sectoid_GGV at mail.ru  Thu Mar  3 15:36:07 2005
+From: Sectoid_GGV at mail.ru (Sectoid)
+Date: Thu, 3 Mar 2005 16:36:07 +0200
+Subject: [Los-angeles-devel-ru] TEst!
+Message-ID: <200503031636.07330.Sectoid_GGV@mail.ru>
+
+??? ? ? ? ????.....
+
+
+From icesik at mail.ru  Thu Mar  3 15:42:44 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Thu, 3 Mar 2005 16:42:44 +0200
+Subject: [Los-angeles-devel-ru] TEst!
+In-Reply-To: <200503031636.07330.Sectoid_GGV@mail.ru>
+References: <200503031636.07330.Sectoid_GGV@mail.ru>
+Message-ID: <200503031642.44609.icesik@mail.ru>
+
+? ????????? ?? ???????, 03-???-2005 16:36 Sectoid ???????(a):
+> ??? ? ? ? ????.....
+
+??? ? ???????? ??????????! :-)
+
+
+From Sysadmin at online.dn.ua  Thu Mar  3 16:06:44 2005
+From: Sysadmin at online.dn.ua (Sectoid)
+Date: Thu, 3 Mar 2005 17:06:44 +0200
+Subject: [Los-angeles-devel-ru] TEst!
+In-Reply-To: <200503031642.44609.icesik@mail.ru>
+References: <200503031636.07330.Sectoid_GGV@mail.ru> <200503031642.44609.icesik@mail.ru>
+Message-ID: <200503031706.44624.Sysadmin@online.dn.ua>
+
+??????????? ????, ?????????? All!
+
+????? ??? ????????, ? ??? ???????: "%{_x11bindir}/<???-??????>" ?? 
+"%_x11bindir/<???-??????>"???
+? ??? ??????? ????? ????? ????????????
+
+
+From Sysadmin at online.dn.ua  Thu Mar  3 15:57:27 2005
+From: Sysadmin at online.dn.ua (Sectoid)
+Date: Thu, 3 Mar 2005 16:57:27 +0200
+Subject: [Los-angeles-devel-ru] Spec =?koi8-r?q?=CB?= X.Org
+In-Reply-To: <200503031636.07330.Sectoid_GGV@mail.ru>
+References: <200503031636.07330.Sectoid_GGV@mail.ru>
+Message-ID: <200503031657.27216.Sysadmin@online.dn.ua>
+
+??????????? ????, ?????????? All!
+
+????? ??? ????????, ? ??? ???????: "%{_x11bindir}/<???-??????>" ?? 
+"%_x11bindir/<???-??????>"???
+? ??? ??????? ????? ????? ????????????
+???? ? ?????....
+-------------- next part --------------
+%define maintainer	Gleb Golubitsky (Sectoid) <Sectoid_GGV at mail.ru>
+%define name		xorg
+%define ver		6.8.2
+%define rel		los1
+%define _iconsdir	/usr/X11R6/lib/X11/icons/
+%define _x11fontsdir	/usr/X11R6/lib/X11/fonts/
+
+
+Summary:	Part of the X.Org implementation of the X Window System
+Name:		%{name}
+Version:	%{ver}
+Release:	%{rel}
+Packager:	%{maintainer}
+License:	X/MIT and other
+Group:		X11
+Source0:	X11R%{version}-src.tar.bz2
+Buildroot:	%{_tmppath}/%{name}-%{version}-buildroot
+
+%description
+If you want to install the X Window System (TM) on
+your machine, you'll need to install X.Org.
+
+The X Window System provides the base technology
+for developing graphical user interfaces. Simply stated,
+X draws the elements of the GUI on the user's screen and
+builds methods for sending user interactions back to the
+application. X also supports remote application deployment-running an
+application on another computer while viewing the input/output
+on your machine.  X is a powerful environment which supports
+many different applications, such as games, programming tools,
+graphics programs, text editors, etc.  X.Org is the version of
+X which runs on Linux, as well as other platforms.
+
+This package contains the basic fonts, programs and documentation
+for an X workstation.  However, this package doesn't provide the
+program which you will need to drive your video hardware.  To
+control your video card, you'll need the particular X server
+package which corresponds to your computer's video card.
+
+In addition to installing this package, you will need to install
+the X.Org package which corresponds to your video card, the
+Xconfigurator package and the xorg-libs package. You may also
+need to install one of the X.Org fonts packages.
+
+And finally, if you are going to develop applications that run as
+X clients, you will also need to install xorg-devel.
+
+%package server
+Summary: The X server from release of X.Org
+Group: System/X11
+Obsoletes: xserver-wrapper, XFree86-server
+PreReq: coreutils, xorg-server-control
+Requires: %name-server-common = %version-%release
+Provides: XFree86-server = 4.4
+
+%description server
+xorg-x11-server is the new generation of X server from X.Org.
+
+%package libs
+Summary: Shared libraries needed by the X Window System version 11 release 6
+Group: System/Libraries
+PreReq: grep
+Requires: freetype >= 1.3, %name-locales = %version-%release
+Provides: xpm = 3.4k-%release, libXft = 2.1.2-%release, XFree86-libs = 4.4
+Obsoletes: xpm, libXft, XFree86-libs
+
+%description libs
+This package contains the shared libraries that most X programs
+need to run properly. These shared libraries are in a separate package in
+order to reduce the disk space needed to run X applications on a machine
+without an X server (i.e, over a network).
+
+%package xapps
+Group: System/X11
+Summary: Graphical application for Xorg
+Requires: %name-utils = %version-%release
+
+%description xapps
+Graphical application for Xorg.
+
+%package xauth
+Summary: X authority file utility
+Group: System/X11
+Requires: %name-libs = %version-%release
+Obsoletes: XFree86-xauth
+Provides: XFree86-xauth = 4.4
+
+%description xauth
+The xauth program is used to edit and display the authorization information
+used in connecting to the X server.
+
+%package xdm
+Summary: X Display Manager
+Group: System/X11
+Requires: %name-libs = %version-%release
+Obsoletes: XFree86-xdm
+Provides: XFree86-xdm = 4.4
+
+%description xdm
+Xdm  manages a collection of X displays, which may be on the local host
+or remote servers.  The design of xdm was guided by the needs of X ter-
+minals  as well as The Open Group standard XDMCP, the X Display Manager
+Control Protocol.  Xdm provides services similar to those  provided  by
+init, getty and login on character terminals: prompting for login name
+and password, authenticating the user, and running a "session".
+
+%package rstart
+Summary: A sample implementation of a Remote Start client for the X Window System
+Group: System/X11
+Requires: %name-server = %version-%release, %name-font-utils = %version-%release
+
+%description rstart
+Rstart  is  a simple implementation of a Remote Start client as defined
+in "A Flexible Remote Execution Protocol Based on ssh".  It uses ssh as
+its underlying remote execution mechanism.
+
+%package xfs
+Group: System/Servers
+Summary: Font server for X.Org
+PreReq: shadow-utils
+Requires: %name-libs = %version-%release
+Requires: %name-server-common = %version-%release
+Obsoletes: xtt, XFree86-xfs
+Provides: XFree86-xfs = 4.4
+
+%description xfs
+This is a font server for X.Org.  You can serve fonts to other X servers
+remotely with this package, and the remote system will be able to use all
+fonts installed on the font server, even if they are not installed on the
+remote computer.
+
+%package -n twm
+Group: System/X11
+Summary: Tab Window Manager for the X Window System
+Requires: %name-server = %version
+
+%description -n twm
+Twm is a window manager for the X Window System. It provides titlebars,
+shaped windows, several forms of icon management, user-defined macro
+functions, click-to-type and pointer-driven keyboard focus, and
+user-specified key and pointer button bindings.
+
+%package locales
+Summary: This package contains set of X.Org locales
+Group: System/Internationalization
+Obsoletes: XFree86-locales
+Provides: XFree86-locales = 4.4
+
+%description locales
+This package contains set of X.Org locales.
+
+%package drv-v4l
+Summary: video4linux driver for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+Obsoletes: %name-v4l-drv
+
+%description drv-v4l
+v4l  is  an  Xorg  driver  for video4linux cards.  It provides a Xvideo
+extention port for video overlay.  Just add the driver  to  the  module
+list  within  the  module section of your xorg.conf file if you want to
+use it.  There are no config options.
+
+%package drv-input
+Summary: input drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-input
+input drivers for X Window System
+
+%package drv-glint
+Summary: GLINT/Permedia video driver for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+Obsoletes: XFree86-glide-module, %name-glide-module
+
+%description drv-glint
+glint  is  an Xorg driver for 3Dlabs & Texas Instruments GLINT/Permedia
+based video cards. The driver is rather fully accelerated, and provides
+support  for  the  following  framebuffer  depths:  8, 15 (may give bad
+results with FBDev support), 16, 24 (32 bpp  recommended,  24  bpp  has
+problems), 30, and an 8+24 overlay mode.
+
+%package drv-tdfx
+Summary: 3Dfx video driver for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+Obsoletes: XFree86-glide-module, %name-glide-module
+
+%description drv-tdfx
+tdfx is an Xorg driver for 3Dfx video cards.
+
+%package drv-savage
+Summary: S3 Savage video driver for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-savage
+savage  is  an  Xorg  driver for the S3 Savage family video accelerator
+chips.  2D, 3D, and Xv acceleration is supported on  all  chips  except
+the  Savage2000  (2D only).  Dualhead operation is supported on MX, IX,
+and SuperSavage chips.
+
+%package drv-ati
+Summary: ATI video drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+Obsoletes: XFree86-ati-gatos, fglrx_glx <= 3.14.1
+Provides: fglrx_glx = 3.14.1
+
+%description drv-ati
+ati is an Xorg drivers for ATI video cards.
+
+%package drv-nvidia
+Summary: NVIDIA video drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-nvidia
+nvidia is an Xorg driver for NVIDIA video cards. The driver supports 2D
+acceleration and provides support for the following framebuffer depths:
+8,  15, 16 (except Riva128) and 24.  All visual types are supported for
+depth 8, TrueColor and DirectColor visuals are supported for the  other
+depths  with the exception of the Riva128 which only supports TrueColor
+in the higher depths.
+
+%package drv-i128
+Summary: Number 9 I128 video driver for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-i128
+i128  is  an  Xorg driver for Number 9 I128 video cards.  The driver is
+accelerated and provides support for all versions of the I128 chip fam-
+ily,  including the SGI flatpanel configuration.  Multi-head configura-
+tions are supported.
+
+%package drv-sis
+Summary: SiS video drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-sis
+sis  is  an  Xorg  driver for SiS (Silicon Integrated Systems) video
+chips. The driver is accelerated, and provides support for  colordepths
+of 8, 16 and 24 bpp.  XVideo, Render and other extensions are supported
+as well.
+
+%package drv-apm
+Summary: Alliance ProMotion video driver for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-apm
+apm is an Xorg driver for Alliance ProMotion video cards. The driver is
+accelerated  for  supported  hardware/depth  combination.  It  supports
+framebuffer  depths of 8, 15, 16, 24 and 32 bits. For 6420, 6422, AT24,
+AT3D and AT25, all depths are fully accelerated except 24 bpp for which
+only screen to screen copy and rectangle filling is accelerated.
+
+%package drv-chips
+Summary: Chips and Technologies video driver for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-chips
+chips  is  an  Xorg driver for Chips and Technologies video processors.
+The majority of the Chips and Technologies chipsets  are  supported  by
+this  driver.  In  general  the  limitation on the capabilities of this
+driver are determined by the chipset on which it is run.  Where  possi-
+ble,  this driver provides full acceleration and supports the following
+depths: 1, 4, 8, 15, 16, 24 and on the latest chipsets an 8+16  overlay
+mode.  All  visual  types  are  supported for depth 1, 4 and 8 and both
+TrueColor and DirectColor visuals are supported where possible.  Multi-
+head configurations are supported on PCI or AGP buses.
+
+%package drv-cyrix
+Summary: Cyrix video driver for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-cyrix
+cyrix  is  an  Xorg  driver  for  the Cyrix MediaGX (now Natsemi Geode)
+series of processors when using the built in video.
+
+%package drv-i740
+Summary: Intel i740 video driver for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-i740
+i740 is an Xorg driver for Intel i740 video cards.
+
+%package drv-i8xx
+Summary: Intel 8xx integrated graphics chipsets drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-i8xx
+i810  is  an  Xorg  driver for Intel integrated graphics chipsets.  The
+driver supports depths 8, 15, 16 and 24.  All  visual  types  are  sup-
+ported  in  depth  8.  For the i810/i815 other depths support the True-
+Color and DirectColor visuals.  For the 830M and later, only the  True-
+Color  visual  is supported for depths greater than 8.  The driver sup-
+ports hardware accelerated 3D via the Direct  Rendering  Infrastructure
+(DRI),  but only in depth 16 for the i810/i815 and depths 16 and 24 for
+the 830M and later.
+
+i810 supports the i810, i810-DC100, i810e,  i815,  830M,  845G,  852GM,
+855GM, 865G and 915G chipsets.
+
+%package drv-newport
+Summary: Newport video driver for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-newport
+newport  is  an  Xorg  driver  for the SGI Indy's and Indigo2's newport
+video cards.
+
+%package drv-rendition
+Summary: Rendition video driver for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-rendition
+rendition  is  an  Xorg  driver for Rendition/Micron based video cards.
+The driver supports following framebuffer depths: 8, 15  (Verite  V1000
+only),  16  and  24. Acceleration and multi-head configurations are not
+supported yet, but are work in progress.
+
+%package drv-s3virge
+Summary: S3 ViRGE video driver for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-s3virge
+s3virge  is  an  Xorg  driver  for S3 based video cards.  The driver is
+fully accelerated, and provides support for the  following  framebuffer
+depths: 8, 15, 16, and 24.  All visual types are supported for depth 8,
+and TrueColor visuals are supported for the other depths.  XVideo hard-
+ware up scaling is supported in depth 16 and 24 on the DX, GX, GX2, MX,
+MX+, and Trio3D/2X.  Doublescan modes are supported and tested in depth
+8 and 16 on DX, but disable XVideo.  Doublescan modes on other chipsets
+are untested.
+
+%package drv-ark
+Summary: ARK Logic video driver for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-ark
+ark is an Xorg drivers for ARK Logic video cards.
+
+%package drv-imstt
+Summary: Integrated Micro Solutions Twin Turbo 128 video driver for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-imstt
+imstt  is  an Xorg driver for Integrated Micro Solutions Twin Turbo 128
+video chips.
+       
+%package drv-cirrus
+Summary: Cirrus Logic video drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-cirrus
+cirrus  is  an Xorg driver for Cirrus Logic video chips.
+
+%package drv-mga
+Summary: Matrox video drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-mga
+mga  is  an  Xorg  driver  for Matrox video cards.  The driver is fully
+accelerated, and provides support for the following framebuffer depths:
+8,  15,  16,  24,  and an 8+24 overlay mode.  All visual types are sup-
+ported for depth 8, and both TrueColor and DirectColor visuals are sup-
+ported  for  the  other  depths except 8+24 mode which supports Pseudo-
+Color, GrayScale and TrueColor.   Multi-card  configurations  are  sup-
+ported.   XVideo  is  supported  on G200 and newer systems, with either
+TexturedVideo or video overlay.  The second head of dual-head cards  is
+supported  for  the G450 and G550.  Support for the second head on G400
+cards requires a binary-only "mga_hal" module that  is  available  from
+Matrox  <http://www.matrox.com>, and may be on the CD supplied with the
+card.  That module also provides various other enhancements, and may be
+necessary  to  use  the  DVI  (digital)  output  on the G550 (and other
+cards).
+
+%package drv-via
+Summary: VIA video drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-via
+via is an Xorg driver for VIA video chipsets.
+
+The via driver supports the VIA CLE266 (CLE3122, CLE3022) chipset video
+and the VIA KM400/K8M800 VT3204/5/7204/5 video, including 2D  accelera-
+tion  and  the Xv video overlay extensions. Flat panel, TV and VGA out-
+puts are supported.
+
+%package drv-neomagic
+Summary: Neomagic video drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+Obsoletes: %name-neomagic-drv
+
+%description drv-neomagic
+neomagic  is an Xorg driver for the Neomagic graphics chipsets found in
+many laptop computers.
+
+%package drv-nsc
+Summary: Nsc video drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-nsc
+nsc  is an Xorg driver for National Semiconductors GEODE processor fam-
+ily.  It uses the DURANGO kit provided by National Semiconductor.   The
+driver  is  accelerated,  and provides support for the following frame-
+buffer depths: 8, 16 and 24.
+
+%package drv-s3
+Summary: S3 video drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-s3
+s3 is an Xorg driver for S3 video chipsets.
+
+%package drv-siliconmotion
+Summary: Silicon Motion video drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-siliconmotion
+siliconmotion  is  an Xorg driver for Silicon Motion based video cards.
+The driver is fully accelerated, and provides support for the following
+framebuffer  depths: 8, 16, and 24.  All visual types are supported for
+depth 8, and TrueColor visuals are supported for the other depths.
+
+%package drv-tga
+Summary: DEC TGA video drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-tga
+tga is an Xorg driver for DEC TGA video chipsets.
+
+%package drv-trident
+Summary: Trident video drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-trident
+trident  is  an  Xorg  driver  for  Trident video cards.  The driver is
+accelerated, and provides support for the following framebuffer depths:
+1,  4, 8, 15, 16, and 24. Multi-head configurations are supported.  The
+XvImage extension is supported on TGUI96xx and greater cards.
+
+%package drv-tseng
+Summary: Tseng Labs video drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-tseng
+tseng  is  an  Xorg  driver  for Tseng Labs video cards.
+
+%package drv-vmware
+Summary: VMware SVGA video drivers for X Window System
+Group: System/X11
+PreReq: %name-server = %version-%release
+
+%description drv-vmware
+vmware is an Xorg driver for VMware virtual video cards.
+
+
+%package server-common
+Summary: The X server common files
+Group: System/X11
+Requires: %name-xauth = %version-%release, %name-misc-fonts = %version
+Requires: util-linux, coreutils, xinitrc >= 2.4.4, app-defaults >= 0.2.6
+
+%description server-common
+xorg-x11-server-common is common files for X.Org.
+
+%package utils
+Summary: Utilities for the X Window System version 11 release 6
+Group: X11
+Requires: %name-libs = %version-%release, %name-font-utils = %version-%release
+Requires: %name-xauth = %version-%release, xterm, cpp
+
+%description utils
+Some useful utilities for the X Window System version 11 release 6.
+
+Install xorg-utils if you are going to work with X.Org.
+
+%package font-utils
+Summary: Font utilities required for installing fonts
+Group: System/X11
+Requires: %name-libs = %version-%release
+
+%description font-utils
+Includes mkfontdir, and other font related utilities which are required when
+installing font packages.
+
+%package Xprt
+Summary: The X print service
+Group: System/X11
+Requires: %name-server-common = %version-%release
+
+%description Xprt
+Xprint is a very flexible, extensible, scaleable,  client/server  print
+system  based on ISO 10175 (and some other specs) and the X11 rendering
+protocol.  Using Xprint  an  application  can  search,  query  and  use
+devices like printers, FAX machines or create documents in formats like
+PDF.  In particular, an application can seek a printer, query supported
+attributes  (like paper size, trays, fonts etc.), configure the printer
+device to match its needs and print on it like on any  other  X  device
+reusing parts of the code which is used for the video card Xserver.
+
+%package Xvfb
+Summary: A virtual framebuffer X Windows System server for X.Org
+Group: System/X11
+Requires: %name-server-common = %version-%release
+Provides: XFree86-Xvfb = 4.4
+Obsoletes: XFree86-Xvfb
+
+%description Xvfb
+Xvfb (X Virtual Frame Buffer) is an X Windows System server
+that is capable of running on machines with no display hardware and no
+physical input devices.  Xvfb emulates a dumb framebuffer using virtual
+memory.  Xvfb doesn't open any devices, but behaves otherwise as an X
+display.  Xvfb is normally used for testing servers.  Using Xvfb, the mfb
+or cfb code for any depth can be exercised without using real hardware
+that supports the desired depths.  Xvfb has also been used to test X
+clients against unusual depths and screen configurations, to do batch
+processing with Xvfb as a background rendering engine, to do load testing,
+to help with porting an X server to a new platform, and to provide an
+unobtrusive way of running applications which really don't need an X
+server but insist on having one.
+
+If you need to test your X server or your X clients, you may want to
+install Xvfb for that purpose.
+
+%package Xnest
+Summary: A nested X.Org server
+Group: System/X11
+Requires: %name-server-common = %version-%release
+Provides: XFree86-Xnest = 4.4
+Obsoletes: XFree86-Xnest
+
+%description Xnest
+Xnest is an X Window System server which runs in an X window.
+Xnest is a 'nested' window server, actually a client of the
+real X server, which manages windows and graphics requests
+for Xnest, while Xnest manages the windows and graphics
+requests for its own clients.
+
+You will need to install Xnest if you require an X server which
+will run as a client of your real X server (perhaps for
+testing purposes).
+
+%package Xdmx
+Summary: Multi-head X server
+Group: System/X11
+Requires: %name-server = %version-%release
+
+%description Xdmx
+Xdmx  is  a proxy X server that uses one or more other X servers as its
+display devices.  It provides multi-head X functionality  for  displays
+that  might  be  located  on  different  machines.  Xdmx functions as a
+front-end X server that acts as a proxy to a set of back-end X servers.
+All  of  the  visible  rendering  is  passed to the back-end X servers.
+Clients connect to the Xdmx front-end, and  everything  appears  as  it
+would  in  a  regular multi-head configuration.  If Xinerama is enabled
+(e.g., with +xinerama on the command line), the clients  see  a  single
+large screen.
+      
+Xdmx communicates to the back-end X servers using the standard X11 pro-
+tocol, and standard and/or commonly available X server extensions.
+
+%package sdk
+Summary: SDK for X server driver module development
+Group: Development/C
+
+%description sdk
+The SDK package provides the developmental files which are necessary for
+developing X server driver modules, and for compiling driver modules
+outside of the standard X11 source code tree.  Developers writing video
+drivers, input drivers, or other X modules should install this package.
+
+%package dev
+Summary: Include files, development libraries and manual pages for xorg-x11
+Group: Development/C
+Obsoletes: Mesa-devel, libXft-devel, XFree86-devel, libGLU-devel, xpm-devel
+Provides: Mesa-devel = %mesa_version-%release, libXft-devel = 2.1.2-%release, libGLU-devel = %mesa_version-%release
+Provides: XFree86-devel = 4.4, xpm-devel = 3.4k-%release
+Requires: %name-libs = %version-%release, %name-mesaGL = %version-%release, %name-font-utils = %version-%release
+Requires: %name-bitmaps = %version-%release, glibc-dev, cpp
+
+%description dev
+This package includes the libraries, header files and documentation
+you'll need to develop programs which run in X clients. xorg-x11 includes
+the base Xlib library as well as the Xt and Xaw widget sets.
+
+For guidance on programming with these libraries, O'Reilly & Associates
+produces a series on X programming which you might find useful.
+
+Install this package if you are going to develop programs which
+will run as X clients.
+
+%package static-dev
+Summary: X11R6 development static libraries
+Group: System/Libraries
+Requires: xorg-dev = %{version}-%{release}
+
+%description static-dev
+This package contains X.Org static libraries needed to
+build statically linked programs.
+
+%package misc-fonts
+Summary: Misc fonts required by the X Window System
+Group: System/Fonts/X11 bitmap
+PreReq: chkfontpath, %name-font-utils
+Obsoletes: %name-base-fonts
+
+%description misc-fonts
+This package provides the misc fonts that are required by the X Window System.
+
+%package type1-fonts
+Summary: Type1 fonts required by the X Window System
+Group: System/Fonts/X11 bitmap
+PreReq: chkfontpath, %name-font-utils
+Obsoletes: %name-base-fonts
+
+%description type1-fonts
+This package provides the type1 fonts that are required by the X Window System.
+
+%package 75dpi-fonts
+Summary: A set of 75 dpi resolution fonts for the X Window System
+Group: System/Fonts/X11 bitmap
+PreReq: chkfontpath, %name-font-utils
+Obsoletes: XFree86-75dpi-fonts
+Provides: XFree86-75dpi-fonts = 4.4
+
+%description 75dpi-fonts
+xorg-x11-75dpi-fonts contains the 75 dpi fonts used
+on most X Window Systems. If you're going to use the
+X Window System, you should install this package, unless
+you have a monitor which can support 100 dpi resolution.
+In that case, you may prefer the 100dpi fonts available in
+the xorg-x11-100dpi-fonts package.
+
+You may also need to install other X.Org font packages.
+
+To install the X Window System, you will need to install
+the xorg-x11 package, the xorg-x11 package corresponding to 
+your video card, the Xconfigurator package and the
+xorg-x11-libs package.
+
+Finally, if you are going to develop applications that run
+as X clients, you will also need to install the
+xorg-x11-devel package.
+
+%package 75dpi-fonts-unicode
+Summary: A set of 75 dpi resolution unicode fonts for the X Window System
+Group: System/Fonts/X11 bitmap
+PreReq: chkfontpath, %name-font-utils
+Obsoletes: XFree86-75dpi-fonts-unicode
+Provides: XFree86-75dpi-fonts-unicode = 4.4
+
+%description 75dpi-fonts-unicode
+See 75dpi-fonts
+
+%package 100dpi-fonts-unicode
+Summary: A set of 100 dpi resolution unicode fonts for the X Window System
+Group: System/Fonts/X11 bitmap
+PreReq: chkfontpath, %name-font-utils
+Obsoletes: XFree86-100dpi-fonts-unicode
+Provides: XFree86-100dpi-fonts-unicode = 4.4
+
+%description 100dpi-fonts-unicode
+See 100dpi-fonts
+
+%package 100dpi-fonts
+Summary: X Window System 100dpi fonts
+Group: System/Fonts/X11 bitmap
+PreReq: chkfontpath, %name-font-utils
+Obsoletes: XFree86-100dpi-fonts
+Provides: XFree86-100dpi-fonts = 4.4
+
+%description 100dpi-fonts
+If you're going to use the X Window System and you have a
+high resolution monitor capable of 100 dpi, you should install
+xorg-x11-100dpi-fonts. This package contains a set of
+100 dpi fonts used on most Linux systems.
+
+If you are installing the X Window System, you will also
+need to install the xorg-x11 package, the xorg-x11
+package corresponding to your video card, the
+Xconfigurator package and the xorg-x11-libs package.
+If you need to display certain fonts, you may also need
+to install other xorg-x11 fonts packages.
+
+And finally, if you are going to develop applications that
+run as X clients, you will also need to install the
+xorg-x11-devel package.
+
+%package ttf-fonts
+Summary: TrueType fonts provided by the X Window System
+Group: System/Fonts/True type
+PreReq: chkfontpath, freetype, %name-font-utils
+Conflicts: vera-fonts-ttf
+
+%description ttf-fonts
+A collection of truetype fonts which are part of the core X Window System
+distribution.
+
+%package speedo-fonts
+Summary: TrueType fonts provided by the X Window System
+Group: System/Fonts/X11 bitmap
+PreReq: chkfontpath, %name-font-utils
+
+%description speedo-fonts
+A collection of Speedo fonts which are part of the core X Window System
+distribution.
+
+
+%prep
+%setup -q -n xc
+
+%build
+cat > %{_builddir}/xc/config/cf/host.def << EOF
+#define XFree86CustomVersion	"Los Angeles GNU/Linux build: %{version}-%{release}"
+/* Experimental custom messages */
+#define XFree86RedHatCustom	YES
+
+#define BuilderString		"Build Host: evil.los-angeles.org.ua\n"
+
+#define BootstrapCFlags		$RPM_OPT_FLAGS -pipe
+
+#define DefaultGcc2i386Opt	$RPM_OPT_FLAGS -fno-strength-reduce GccAliasingArgs -pipe
+#define DefaultGcc2x86_64Opt	$RPM_OPT_FLAGS -fno-strength-reduce GccAliasingArgs -pipe
+#define DefaultGcc2AxpOpt	$RPM_OPT_FLAGS -Wa,-m21164a GccAliasingArgs -pipe
+#define DefaultGcc2PpcOpt	$RPM_OPT_FLAGS GccAliasingArgs -pipe
+
+#define LinkGLToUsrInclude	NO
+#define LinkGLToUsrLib		NO
+
+#define BuildGLwLibrary		YES
+#define ForceNormalLib		YES
+
+/* Disable joystick support because it is totally broken in XFree86 4.x, at
+ * least up to and including 4.1.0.  Use native OS joystick support instead.
+ */
+#define JoystickSupport		NO
+
+#define UseDeprecatedKeyboardDriver	NO
+
+#define HasAgpGart		YES
+
+#define HasDevRandom		YES
+#define HasPam			YES
+#define HasPamMisc		YES
+#define HasZlib			YES
+
+/* This is YES in xfree86.cf for all architectures but x86, and we need it
+ * on x86 or else KDE/GNOME shared libs and others that link to them will
+ * not be too happy.
+ * Update: This is needed on x86_64 also as the xfree86.cf file settings get
+ * ignored.  I've assumed they all get ignored and made it all-arch instead.
+ */
+#define StaticNeedsPicForShared	YES
+#define LargePICTable		YES
+
+#define HasLinuxInput		YES
+
+#define BuildXterm		NO
+
+#define XpRasterDDX		YES
+#define BuildGISWxprintglue	NO
+#define BuildGISWxprint		NO
+
+#define HasGlide3		NO
+
+#define HasSharedLibraries	YES
+#define SharedLibXxf86dga	YES
+#define SharedLibXv		YES
+#define SharedOldX		YES
+#define SharedLibFont		YES
+#define SharedLibFontEnc	YES
+#define SharedLibXxf86vm	YES
+#define SharedLibXxf86rush	YES
+#define SharedLibXxf86misc	YES
+#define SharedLibXvMC		YES
+#define SharedLibXss		YES
+#define SharedLibXinerama	YES
+#define SharedLibXfontcache	YES
+#define SharedLibXdmcp		YES
+#define SharedLibXau		YES
+#define SharedLibXRes		YES
+#define SharedLibFS		YES
+#define SharedLibGLw		YES
+#define SharedLibDmx		YES
+
+#define SharedXfontReqs		stubs/libfntstubs.a -L%_libdir -lfreetype -lm
+#define SharedXevieReqs		-L../../exports/lib -lXext -lX11
+#define SharedXfixesReqs	-L../../exports/lib -lX11
+#define SharedXcompositeReqs	-L../../exports/lib -lX11
+#define SharedXdamageReqs	-L../../exports/lib -lX11
+
+/* Expat is only needed by fontconfig */
+#define HasExpat		YES
+
+#define UseFontconfig		YES
+#define HasFontconfig		YES
+#define UseFreetype2		YES
+#define HasFreetype2		YES
+#define FSUseSyslog		YES
+
+#define BuildFonts		YES
+#define BuildFontCache		YES
+#define BuildSpeedo		YES
+#define BuildType1		YES
+#define BuildCID		YES
+#define BuildFreeType		YES
+
+#define BuildCIDFonts		YES
+#define BuildType1Fonts		YES
+#define BuildSpeedoFonts	YES
+#define BuildCyrillicFonts	YES
+#define BuildKOI8_RFonts	YES
+#define BuildCP154Fonts		YES
+#define BuildBethMarduthoFonts	YES
+#define BuildISO8859_1Fonts	YES
+#define BuildISO8859_2Fonts	YES
+#define BuildISO8859_3Fonts	YES
+#define BuildISO8859_4Fonts	YES
+#define BuildISO8859_5Fonts	BuildCyrillicFonts
+#define BuildISO8859_6Fonts	YES
+#define BuildISO8859_7Fonts	YES
+#define BuildISO8859_8Fonts	YES
+#define BuildISO8859_9Fonts	YES
+#define BuildISO8859_10Fonts	YES
+#define BuildISO8859_11Fonts	YES
+#define BuildISO8859_12Fonts	YES
+#define BuildISO8859_13Fonts	YES
+#define BuildISO8859_14Fonts	YES
+#define BuildISO8859_15Fonts	YES
+#define BuildISO8859_16Fonts	YES
+
+#define BuildXF86MiscExt	YES
+#define BuildHtmlManPages	NO
+#define BuildScanpci		NO
+#define BuildIPv6		NO
+#define BuildDmx		YES
+#define BuildPlugin		NO
+#define BuildComposite		YES
+
+#define UseXserverWrapper	YES
+#define UseUtempter		YES
+#define UseInternalMalloc	NO
+#define UseMatroxHal		NO
+
+#define BuildXF86DRI		YES
+#define BuildDevelDRIDrivers	YES
+#define BuildXvExt		YES
+
+#define BuildDPMS		YES
+
+#define UseConfDirForXkb		NO
+#define UseConfDirForAppDefaults	NO
+
+#define InstallXdmConfig	NO
+#define InstallFSConfig		NO
+
+#undef  DefaultUserPath
+#define DefaultUserPath		/usr/local/bin:/bin:/usr/bin
+#undef  DefaultSystemPath
+#define DefaultSystemPath	/usr/local/sbin:/sbin:/usr/sbin:/bin:/usr/bin
+
+#define DefaultCursorTheme	Bluecurve
+
+#define AdmDir			/var/log
+#define LbxproxyDir		/etc/X11/lbxproxy
+#define ProxyManagerDir		/etc/X11/proxymngr
+#define ServerConfigDir		/etc/X11/xserver
+#define XdmDir			/etc/X11/xdm
+#define XConfigDir		/etc/X11
+#define XinitDir		/etc/X11/xinit
+#define EtcX11Directory		/etc/X11
+#define XAppLoadDir		/etc/X11/app-defaults
+#define XPrintDir		/etc/X11/xprint
+
+#define XFree86Devel		NO
+#define BuildCyrillicFonts	YES
+
+#define XOrgNameString		Los Angeles GNU/Linux X.Org Maintainer Team
+#define XOrgWebSupportAddress	http://bugzilla.los-angeles.org.ua
+#define BuilderEMailAddr	"Sectoid_GGV at mail.ru"
+#define LinuxDistName		"Los Angeles GNU/Linux"
+
+/*
+#define DriverManDir		\$(MANSOURCEPATH)4
+#define DriverManSuffix		4x /* use just one tab or cpp will die */
+#define MiscManDir		\$(MANSOURCEPATH)7
+#define MiscManSuffix		7x /* use just one tab or cpp will die */
+*/
+EOF
+
+%{__make} World %{_smp_mflags}
+
+%install
+%{__make} DESTDIR=${RPM_BUILD_ROOT} install
+
+%clean
+rm -rf %{buildroot}
+rm -rf %{_builddir}/xc
+
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
+
+%files
+%defattr(-,root,root)
+
+%files utils
+%{_x11bindir}/lbxproxy
+%{_x11bindir}/proxymngr
+%{_x11bindir}/xfindproxy
+%{_x11bindir}/xfwp
+%{_x11bindir}/lndir
+%{_x11bindir}/luit
+%{_x11bindir}/mkdirhier
+%{_x11bindir}/appres
+%{_x11bindir}/cleanlinks
+%{_x11bindir}/dpsexec
+%{_x11bindir}/dpsinfo
+%{_x11bindir}/gtf
+%{_x11bindir}/iceauth
+%{_x11bindir}/showrgb
+%{_x11bindir}/smproxy
+%{_x11bindir}/x11perf
+%{_x11bindir}/x11perfcomp
+%{_x11bindir}/Xmark
+%{_x11bindir}/xcutsel
+%{_x11bindir}/xcmsdb
+%{_x11bindir}/sessreg
+%{_x11bindir}/xdpyinfo
+%attr(0755,root,root) %{_x11bindir}/dga
+%{_x11bindir}/xhost
+%{_x11bindir}/xinit
+%{_x11bindir}/setxkbmap
+%{_x11bindir}/xkbcomp
+%{_x11bindir}/xkbevd
+%{_x11bindir}/xkbprint
+%{_x11bindir}/xkbvleds
+%{_x11bindir}/xkbwatch
+%{_x11bindir}/xkbbell
+%{_x11bindir}/xlsatoms
+%{_x11bindir}/xlsclients
+%{_x11bindir}/xlsfonts
+%{_x11bindir}/xmessage
+%{_x11bindir}/xmodmap
+%{_x11bindir}/xprop
+%{_x11bindir}/xrdb
+%{_x11bindir}/xset
+%{_x11bindir}/xrefresh
+%{_x11bindir}/xsetmode
+%{_x11bindir}/xsetpointer
+%{_x11bindir}/xsetroot
+%{_x11bindir}/xstdcmap
+%{_x11bindir}/xev
+%{_x11bindir}/xwd
+%{_x11bindir}/xwininfo
+%{_x11bindir}/xwud
+%{_x11bindir}/xorgconfig
+%{_x11bindir}/ico
+%{_x11bindir}/listres
+%{_x11bindir}/mkhtmlindex
+%{_x11bindir}/oclock
+%{_x11bindir}/pcitweak
+%{_x11bindir}/pswrap
+%{_x11bindir}/revpath
+%{_x11bindir}/rman
+%{_x11bindir}/showfont
+%{_x11bindir}/xgamma
+%{_x11bindir}/xvinfo
+%{_x11bindir}/xrandr
+%{_x11bindir}/inb
+%{_x11bindir}/inl
+%{_x11bindir}/inw
+%{_x11bindir}/ioport
+%{_x11bindir}/makepsres
+%{_x11bindir}/makestrs
+%{_x11bindir}/mmapr
+%{_x11bindir}/mmapw
+%{_x11bindir}/outb
+%{_x11bindir}/outl
+%{_x11bindir}/outw
+%{_x11bindir}/xtrapchar
+%{_x11bindir}/xtrapin
+%{_x11bindir}/xtrapinfo
+%{_x11bindir}/xtrapout
+%{_x11bindir}/xtrapproto
+%{_x11bindir}/xtrapreset
+%{_x11bindir}/xtrapstats
+%{_x11bindir}/cxpm
+%{_x11bindir}/sxpm
+%{_x11bindir}/getconfig
+%{_x11bindir}/getconfig.pl
+%{_x11mandir}/man1/getconfig.1x*
+%{_x11mandir}/man1/cxpm.1x*
+%{_x11mandir}/man1/sxpm.1x*
+%{_x11mandir}/man1/xrandr.1x*
+%{_x11mandir}/man1/xvinfo.1x*
+%{_x11mandir}/man1/xgamma.1x*
+%{_x11mandir}/man1/showfont.1x*
+%{_x11mandir}/man1/rman.1x*
+%{_x11mandir}/man1/revpath.1x*
+%{_x11mandir}/man1/pswrap.1x*
+%{_x11mandir}/man1/pcitweak.1x*
+%{_x11mandir}/man1/oclock.1x*
+%{_x11mandir}/man1/listres.1x*
+%{_x11mandir}/man1/luit.1x*
+%{_x11mandir}/man1/ico.1x*
+%{_x11mandir}/man1/Xmark.1x*
+%{_x11mandir}/man1/dpsexec.1x*
+%{_x11mandir}/man1/dpsinfo.1x*
+%{_x11mandir}/man1/lbxproxy.1x*
+%{_x11mandir}/man1/proxymngr.1x*
+%{_x11mandir}/man1/xfindproxy.1x*
+%{_x11mandir}/man1/xfwp.1x*
+%{_x11mandir}/man1/lndir.1x*
+%{_x11mandir}/man1/makestrs.1x*
+%{_x11mandir}/man1/mkdirhier.1x*
+%{_x11mandir}/man1/appres.1x*
+%{_x11mandir}/man1/iceauth.1x*
+%{_x11mandir}/man1/showrgb.1x*
+%{_x11mandir}/man1/smproxy.1x*
+%{_x11mandir}/man1/x11perf.1x*
+%{_x11mandir}/man1/x11perfcomp.1x*
+%{_x11mandir}/man1/xcutsel.1x*
+%{_x11mandir}/man1/xcmsdb.1x*
+%{_x11mandir}/man1/sessreg.1x*
+%{_x11mandir}/man1/xdpyinfo.1x*
+%{_x11mandir}/man1/xev.1x*
+%{_x11mandir}/man1/dga.1x*
+%{_x11mandir}/man1/xhost.1x*
+%{_x11mandir}/man1/xinit.1x*
+%{_x11mandir}/man1/startx.1x*
+%{_x11mandir}/man1/setxkbmap.1x*
+%{_x11mandir}/man1/xkbcomp.1x*
+%{_x11mandir}/man1/xkbevd.1x*
+%{_x11mandir}/man1/xkbprint.1x*
+%{_x11mandir}/man1/xlsatoms.1x*
+%{_x11mandir}/man1/xlsclients.1x*
+%{_x11mandir}/man1/xlsfonts.1x*
+%{_x11mandir}/man1/xmessage.1x*
+%{_x11mandir}/man1/xmodmap.1x*
+%{_x11mandir}/man1/xprop.1x*
+%{_x11mandir}/man1/xrdb.1x*
+%{_x11mandir}/man1/xrefresh.1x*
+%{_x11mandir}/man1/xset.1x*
+%{_x11mandir}/man1/xsetmode.1x*
+%{_x11mandir}/man1/xsetpointer.1x*
+%{_x11mandir}/man1/xsetroot.1x*
+%{_x11mandir}/man1/xstdcmap.1x*
+%{_x11mandir}/man1/xwd.1x*
+%{_x11mandir}/man1/xwininfo.1x*
+%{_x11mandir}/man1/xwud.1x*
+%{_x11mandir}/man1/Xserver.1x*
+%{_x11mandir}/man1/Xorg.1x*
+%{_x11mandir}/man1/cleanlinks.1x*
+%{_x11mandir}/man1/gtf.1x*
+%{_x11mandir}/man1/makepsres.1x*
+%{_x11mandir}/man1/mkhtmlindex.1x*
+%{_x11mandir}/man1/xtrap.1x*
+%{_x11mandir}/man1/xtrapchar.1x*
+%{_x11mandir}/man1/xtrapin.1x*
+%{_x11mandir}/man1/xtrapinfo.1x*
+%{_x11mandir}/man1/xtrapout.1x*
+%{_x11mandir}/man1/xtrapproto.1x*
+%{_x11mandir}/man1/xtrapreset.1x*
+%{_x11mandir}/man1/xtrapstats.1x*
+%{_x11mandir}/man1/xorgconfig.1x*
+%{_x11mandir}/man1/dumpkeymap.1x*
+%{_x11mandir}/man5/xorg.conf.5x*
+%{_x11mandir}/man5/getconfig.5x*
+%dir %{_x11libdir}/X11/etc
+%{_x11libdir}/X11/etc/xmodmap.std
+%{_x11libdir}/X11/x11perfcomp
+%{_x11libdir}/X11/lbxproxy
+%{_x11libdir}/X11/proxymngr
+%{_x11libdir}/X11/getconfig
+%dir %{_sysconfdir}/X11/lbxproxy
+%dir %{_sysconfdir}/X11/proxymngr
+%config(noreplace) %{_sysconfdir}/X11/lbxproxy/*
+%config(noreplace) %{_sysconfdir}/X11/proxymngr/*
+
+%files sdk
+%defattr(-,root,root)
+%{_x11libdir}/Server/
+
+%files dev
+%{_x11includedir}/*
+%exclude %{_x11includedir}/X11/bitmaps
+%exclude %{_x11includedir}/X11/pixmaps
+%{_x11mandir}/man3/*
+%exclude %{_x11mandir}/man3/DMX*
+%{_x11libdir}/X11/config
+%{_x11bindir}/imake
+%{_x11bindir}/makedepend
+%{_x11bindir}/gccmakedep
+%{_x11bindir}/ccmakedep
+%{_x11bindir}/xmkmf
+%{_x11bindir}/makeg
+%{_x11bindir}/mergelib
+%{_x11bindir}/xcursorgen
+%{_x11bindir}/*-config
+%{_x11mandir}/man1/makeg.1x*
+%{_x11mandir}/man1/imake.1x*
+%{_x11mandir}/man1/makedepend.1x*
+%{_x11mandir}/man1/xmkmf.1x*
+%{_x11mandir}/man1/xcursorgen.1x*
+%{_x11mandir}/man1/mergelib.1x*
+%{_x11mandir}/man1/ccmakedep.1x*
+%{_x11mandir}/man1/gccmakedep.1x*
+%{_x11mandir}/man7/XStandards.7x*
+%{_x11libdir}/*.so
+%exclude %{_x11libdir}/libI810XvMC.so
+%{_x11libdir}/pkgconfig/*
+
+%files static-dev
+%{_x11libdir}/*.a
+
+%files 75dpi-fonts
+%dir %_x11fontsdir/75dpi
+%_x11fontsdir/75dpi/*.gz
+%_x11fontsdir/75dpi/fonts.alias
+%_x11fontsdir/75dpi/fonts.dir
+
+%files 100dpi-fonts
+%dir %_x11fontsdir/100dpi
+%_x11fontsdir/100dpi/*.gz
+%_x11fontsdir/100dpi/fonts.alias
+%_x11fontsdir/100dpi/fonts.dir
+
+%files 75dpi-fonts-unicode
+
+%files 100dpi-fonts-unicode
+
+%files ttf-fonts
+%dir %_x11fontsdir/TTF
+%_x11fontsdir/TTF/*.ttf
+%_x11fontsdir/TTF/fonts.dir
+%_x11fontsdir/TTF/fonts.scale
+
+%files misc-fonts
+%dir %_x11fontsdir/misc
+%_x11fontsdir/misc/*.gz
+%_x11fontsdir/misc/fonts.alias
+%_x11fontsdir/misc/fonts.dir
+%_x11fontsdir/misc/fonts.scale
+%_x11fontsdir/misc/encodings.dir
+
+%files type1-fonts
+%dir %_x11fontsdir/Type1
+%_x11fontsdir/Type1/*.pfa
+%_x11fontsdir/Type1/*.pfb
+%_x11fontsdir/Type1/*.afm
+%_x11fontsdir/Type1/fonts.scale
+%_x11fontsdir/Type1/fonts.dir
+
+%files speedo-fonts
+%dir %_x11fontsdir/Speedo
+%_x11fontsdir/Speedo/*.spd
+%_x11fontsdir/Speedo/fonts.dir
+%_x11fontsdir/Speedo/fonts.scale
+
+%files server-common
+%dir %_x11fontsdir
+%_sysconfdir/X11/xserver
+%_x11mandir/man7/Xsecurity.7x*
+
+%files server 
+%doc %_x11libdir/X11/Cards
+%doc %_x11libdir/X11/doc
+#%%_docdir/%name-server-%version
+%_x11bindir/Xorg
+%_x11bindir/X
+#%%config(noreplace) %_sysconfdir/pam.d/xserver
+#%%config(missingok noreplace) %_sysconfdir/security/console.apps/xserver
+%dir %_x11libdir/modules
+%_x11libdir/modules/*.a
+%exclude %_x11libdir/modules/libscanpci.a
+%_x11libdir/modules/*.uc
+%_x11libdir/modules/extensions
+%exclude %_x11libdir/modules/extensions/libGLcore.a
+%exclude %_x11libdir/modules/extensions/libglx.a
+%dir %_x11libdir/modules/dri
+%dir %_x11libdir/modules/drivers
+%_x11libdir/modules/drivers/dummy_drv.o
+%_x11libdir/modules/drivers/fbdev_drv.o
+%_x11libdir/modules/drivers/vesa_drv.o
+%_x11libdir/modules/drivers/vga_drv.o
+%dir %_x11libdir/modules/input
+%_x11libdir/modules/input/void_drv.o
+%_x11libdir/modules/input/mouse_drv.o
+%_x11libdir/modules/input/kbd_drv.o
+%_x11libdir/modules/input/summa_drv.o
+# 6.8.1.99
+#%_x11libdir/modules/input/evdev_drv.o
+#
+%_x11libdir/modules/linux
+%_x11libdir/modules/fonts
+%_x11libdir/X11/xserver
+%_x11bindir/startx
+%_x11libdir/X11/xkb
+%_x11libdir/X11/xinit
+#%%_sysconfdir/X11/X
+%_iconsdir/
+%_localstatedir/lib/xkb
+%_x11mandir/man4/fbdev.4x*
+%_x11mandir/man4/fbdevhw.4x*
+%_x11mandir/man4/vga.4x*
+%_x11mandir/man4/vesa.4x*
+%_x11mandir/man4/void.4x*
+%_x11mandir/man4/mouse.4x*
+%_x11mandir/man4/kbd.4x*
+%_x11mandir/man7/X.*7x*
+%_x11mandir/man7/XConsortium.7x*
+%_x11mandir/man7/XProjectTeam.7x*
+
+%files drv-v4l
+%_x11libdir/modules/drivers/linux
+%_x11mandir/man4/v4l.4x*
+
+%files drv-input
+%_x11libdir/modules/input/linux
+%_x11libdir/modules/input/acecad_drv.o
+%_x11libdir/modules/input/digitaledge_drv.o
+%_x11libdir/modules/input/fpit_drv.o
+%_x11libdir/modules/input/keyboard_drv.o
+%_x11libdir/modules/input/spaceorb_drv.o
+%_x11libdir/modules/input/wacom_drv.o
+%_x11libdir/modules/input/aiptek_drv.o
+%_x11libdir/modules/input/dmc_drv.o
+%_x11libdir/modules/input/hyperpen_drv.o
+%_x11libdir/modules/input/calcomp_drv.o
+%_x11libdir/modules/input/dynapro_drv.o
+%_x11libdir/modules/input/js_x_drv.o
+%_x11libdir/modules/input/magellan_drv.o
+%_x11libdir/modules/input/palmax_drv.o
+%_x11libdir/modules/input/tek4957_drv.o
+%_x11libdir/modules/input/citron_drv.o
+%_x11libdir/modules/input/elographics_drv.o
+%_x11libdir/modules/input/microtouch_drv.o
+%_x11libdir/modules/input/penmount_drv.o
+%_x11libdir/modules/input/mutouch_drv.o
+%_x11mandir/man4/mutouch.4x*
+%_x11mandir/man4/ur98.4x*
+%_x11mandir/man4/fpit.4x*
+%_x11mandir/man4/keyboard.4x*
+%_x11mandir/man4/wacom.4x*
+%_x11mandir/man4/aiptek.4x*
+%_x11mandir/man4/dmc.4x*
+%_x11mandir/man4/dynapro.4x*
+%_x11mandir/man4/js_x.4x*
+%_x11mandir/man4/palmax.4x*
+%_x11mandir/man4/tek4957.4x*
+%_x11mandir/man4/citron.4x*
+%_x11mandir/man4/elographics.4x*
+%_x11mandir/man4/microtouch.4x*
+%_x11mandir/man4/penmount.4x*
+
+%files drv-glint
+%_x11libdir/modules/drivers/glint_drv.o
+%_x11libdir/modules/dri/gamma_dri.so
+%_x11mandir/man4/glint.4x*
+
+%files drv-savage
+%_x11libdir/modules/drivers/savage_drv.o
+%_x11libdir/modules/dri/savage_dri.so
+%_x11mandir/man4/savage.4x*
+
+%files drv-tdfx
+%_x11libdir/modules/drivers/tdfx_drv.o
+%_x11libdir/modules/dri/tdfx_dri.so
+%_x11libdir/modules/dri/ffb_dri.so
+%_x11mandir/man4/tdfx.4x*
+
+%files drv-ati
+%_x11libdir/modules/dri/r128_dri.so
+%_x11libdir/modules/dri/r200_dri.so
+%_x11libdir/modules/dri/radeon_dri.so
+%_x11libdir/modules/dri/mach64_dri.so
+%_x11libdir/modules/drivers/ati_drv.o
+%_x11libdir/modules/drivers/atimisc_drv.o
+%_x11libdir/modules/drivers/r128_drv.o
+%_x11libdir/modules/drivers/radeon_drv.o
+# 6.8.1.99
+#%_x11libdir/modules/multimedia
+#
+%_x11mandir/man4/r128.4x*
+%_x11mandir/man4/radeon.4x*
+
+%files drv-nvidia
+%_x11libdir/modules/drivers/nv_drv.o
+%_x11libdir/modules/drivers/riva128.o
+%_x11mandir/man4/nv.4x*
+
+%files drv-i128
+%_x11libdir/modules/drivers/i128_drv.o
+%_x11mandir/man4/i128.4x*
+
+%files drv-sis
+%_x11libdir/modules/drivers/sis_drv.o
+%_x11libdir/modules/dri/sis_dri.so
+%_x11mandir/man4/sis.4x*
+
+%files drv-apm
+%_x11libdir/modules/drivers/apm_drv.o
+%_x11mandir/man4/apm.4x*
+
+%files drv-chips
+%_x11libdir/modules/drivers/chips_drv.o
+%_x11mandir/man4/chips.4x*
+
+%files drv-cyrix
+%_x11libdir/modules/drivers/cyrix_drv.o
+%_x11mandir/man4/cyrix.4x*
+
+%files drv-i740
+%_x11libdir/modules/drivers/i740_drv.o
+%_x11mandir/man4/i740.4x*
+
+%files drv-i8xx
+%_x11libdir/modules/drivers/i810_drv.o
+%_x11libdir/modules/dri/i810_dri.so
+%_x11libdir/modules/dri/i915_dri.so
+%_x11libdir/libI810XvMC.so.*
+%_x11mandir/man4/i810.4x*
+
+%files drv-newport
+%_x11libdir/modules/drivers/newport_drv.o
+%_x11mandir/man4/newport.4x*
+
+%files drv-rendition
+%_x11libdir/modules/drivers/rendition_drv.o
+%_x11mandir/man4/rendition.4x*
+
+%files drv-s3virge
+%_x11libdir/modules/drivers/s3virge_drv.o
+%_x11mandir/man4/s3virge.4x*
+
+%files drv-ark
+%_x11libdir/modules/drivers/ark_drv.o
+
+%files drv-cirrus
+%_x11libdir/modules/drivers/cirrus_*.o
+%_x11mandir/man4/cirrus.4x*
+
+%files drv-trident
+%_x11libdir/modules/drivers/trident_*.o
+%_x11mandir/man4/trident.4x*
+
+%files drv-imstt
+%_x11libdir/modules/drivers/imstt_drv.o
+%_x11mandir/man4/imstt.4x*
+
+%files drv-mga
+%_x11libdir/modules/drivers/mga_drv.o
+%_x11libdir/modules/dri/mga_dri.so
+%_x11mandir/man4/mga.4x*
+
+%files drv-via
+%_x11libdir/modules/drivers/via_drv.o
+%_x11libdir/modules/dri/unichrome_dri.so
+# 6.8.1.99
+#%_x11libdir/libviaXvMC.so.*
+#
+%_x11mandir/man4/via.4x*
+
+%files drv-neomagic
+%_x11libdir/modules/drivers/neomagic_drv.o
+%_x11mandir/man4/neomagic.4x*
+
+%files drv-nsc
+%_x11libdir/modules/drivers/nsc_drv.o
+%_x11mandir/man4/nsc.4x*
+
+%files drv-s3
+%_x11libdir/modules/drivers/s3_drv.o
+
+%files drv-siliconmotion
+%_x11libdir/modules/drivers/siliconmotion_drv.o
+%_x11mandir/man4/siliconmotion.4x*
+
+%files drv-tga
+%_x11libdir/modules/drivers/tga_drv.o
+
+%files drv-tseng
+%_x11libdir/modules/drivers/tseng_drv.o
+%_x11mandir/man4/tseng.4x*
+
+%files drv-vmware
+%_x11libdir/modules/drivers/vmware_drv.o
+%_x11mandir/man4/vmware.4x*
+
+%files xapps
+%dir %_sysconfdir/X11/app-defaults
+%config(noreplace) %_sysconfdir/X11/app-defaults/*
+%exclude %_sysconfdir/X11/app-defaults/Chooser
+%dir %_sysconfdir/X11/xsm
+%config(noreplace) %_sysconfdir/X11/xsm/system.xsm
+%_x11libdir/X11/xsm
+%_x11bindir/beforelight
+%_x11bindir/bitmap
+%_x11bindir/bmtoa
+%_x11bindir/atobm
+%_x11bindir/xclock
+%_x11bindir/editres
+%_x11bindir/viewres
+%_x11bindir/xcalc
+%_x11bindir/xfontsel
+%_x11bindir/xedit
+%_x11libdir/X11/xedit
+%_x11bindir/xclipboard
+%_x11bindir/xconsole
+%_x11bindir/xload
+%_x11bindir/xlogo
+%_x11bindir/xkill
+%_x11bindir/xsm
+%_x11bindir/xditview
+%_x11bindir/xeyes
+%_x11bindir/xfd
+%_x11bindir/xgc
+%_x11bindir/xmag
+%_x11bindir/xmh
+%_x11bindir/xvidtune
+%_x11bindir/xorgcfg
+%_x11bindir/glxgears
+%_x11bindir/texteroids
+%_x11bindir/xbiff
+%_x11mandir/man1/xvidtune.1x*
+%_x11mandir/man1/xmh.1x*
+%_x11mandir/man1/xmag.1x*
+%_x11mandir/man1/xgc.1x*
+%_x11mandir/man1/xfd.1x*
+%_x11mandir/man1/xeyes.1x*
+%_x11mandir/man1/xditview.1x*
+%_x11mandir/man1/xsm.1x*
+%_x11mandir/man1/xkill.1x*
+%_x11mandir/man1/xlogo.1x*
+%_x11mandir/man1/xload.1x*
+%_x11mandir/man1/xconsole.1x*
+%_x11mandir/man1/xclipboard.1x*
+%_x11mandir/man1/xedit.1x*
+%_x11mandir/man1/xfontsel.1x*
+%_x11mandir/man1/xcalc.1x*
+%_x11mandir/man1/viewres.1x*
+%_x11mandir/man1/editres.1x*
+%_x11mandir/man1/xclock.1x*
+%_x11mandir/man1/bmtoa.1x*
+%_x11mandir/man1/atobm.1x*
+%_x11mandir/man1/bitmap.1x*
+%_x11mandir/man1/beforelight.1x*
+%_x11mandir/man1/xorgcfg.1x*
+%_x11mandir/man1/glxgears.1x*
+%_x11mandir/man1/texteroids.1x*
+%_x11mandir/man1/xbiff.1x*
+%_x11includedir/X11/pixmaps
+#%exclude %_miconsdir/twm.xpm
+#%exclude %_liconsdir/twm.xpm
+#%exclude %_iconsdir/twm.xpm
+#%_miconsdir/*.xpm
+#%_liconsdir/*.xpm
+#%_iconsdir/*.xpm
+#%_menudir/%name-xapps
+
+%files xfs
+#%_docdir/%name-xfs-%version
+#%config %_initdir/xfs
+#%config(noreplace) %_sysconfdir/sysconfig/xfs
+%_x11libdir/X11/fs
+%_x11bindir/xfsinfo
+%_x11bindir/fslsfonts
+%_x11bindir/fstobdf
+%_x11bindir/xfs
+%_x11mandir/man1/xfs.1x*
+%_x11mandir/man1/xfsinfo.1x*
+%_x11mandir/man1/fslsfonts.1x*
+%_x11mandir/man1/fstobdf.1x*
+
+%files locales
+%_x11libdir/X11/locale
+
+%files -n twm
+%dir %_sysconfdir/X11/twm
+%config(noreplace) %_sysconfdir/X11/twm/system.twmrc
+%_x11libdir/X11/twm
+%_x11mandir/man1/twm.1x*
+%_x11bindir/twm
+#%_menudir/twm
+#%_miconsdir/twm.xpm
+#%_liconsdir/twm.xpm
+#%_iconsdir/twm.xpm
+
+%files font-utils
+%_x11bindir/bdftopcf
+%_x11bindir/bdftruncate
+%_x11bindir/mkfontdir
+%_x11bindir/mkfontscale
+%_x11bindir/mkcfm
+%_x11bindir/ucs2any
+%_x11fontsdir/util
+%_x11fontsdir/encodings
+%_x11mandir/man1/bdftopcf.1x*
+%_x11mandir/man1/bdftruncate.1x*
+%_x11mandir/man1/mkfontdir.1x*
+%_x11mandir/man1/mkfontscale.1x*
+%_x11mandir/man1/mkcfm.1x*
+%_x11mandir/man1/ucs2any.1x*
+
+%files libs
+%_x11libdir/X11/Options
+%_x11libdir/X11/XErrorDB
+%_x11libdir/X11/XKeysymDB
+%_x11libdir/X11/rgb.txt
+%_x11libdir/X11/Xcms.txt
+%_x11libdir/*.so.*
+%exclude %_x11libdir/libGL*.so.1*
+%exclude %_x11libdir/libOSMesa.so.*
+# 6.8.1.99
+#%exclude %_x11libdir/libviaXvMC.so.*
+#
+%exclude %_x11libdir/libI810XvMC.so.*
+#%_sysconfdir/ld.so.conf.d/X11R6.conf
+
+%files Xprt
+%_x11bindir/Xprt
+%_x11bindir/xphelloworld
+%_x11bindir/xplsprinters
+%_x11bindir/xprehashprinterlist
+%_x11bindir/xpsimplehelloworld
+%_x11bindir/xpxthelloworld
+# 6.8.1.99
+#%_x11bindir/xpr
+#%_x11bindir/xdpr
+#%_x11bindir/xdbedizzy
+#%_x11bindir/pclcomp
+#
+%_x11bindir/xmore
+%_x11mandir/man1/xphelloworld.1x*
+%_x11mandir/man1/xplsprinters.1x*
+# 6.8.1.99
+#%_x11mandir/man1/xpr.1x*
+#%_x11mandir/man1/xdbedizzy.1x*
+#%_x11mandir/man1/pclcomp.1x*
+#%_x11mandir/man1/xdpr.1x*
+#
+#%_x11mandir/man1/Xprt.1x*
+%_x11mandir/man1/xmore.1x*
+%_x11mandir/man1/xprehashprinterlist.1x*
+%_x11mandir/man1/xpsimplehelloworld.1x*
+%_x11mandir/man1/xpxthelloworld.1x*
+%_x11mandir/man7/Xprint.7x*
+%_sysconfdir/X11/xprint
+
+%files Xvfb
+%_x11bindir/Xvfb
+%_x11mandir/man1/Xvfb.1x*
+
+%files Xnest
+%_x11bindir/Xnest
+%_x11mandir/man1/Xnest.1x*
+
+%files Xdmx
+%_x11bindir/Xdmx
+#%_x11bindir/xdmxconfig
+#%_x11bindir/dmxtodmx
+#%_x11bindir/vdltodmx
+%_x11mandir/man1/Xdmx.1x*
+%_x11mandir/man1/dmxtodmx.1x*
+%_x11mandir/man1/vdltodmx.1x*
+%_x11mandir/man1/xdmxconfig.1x*
+%_x11mandir/man3/DMX*
+
+%files rstart
+#%_sysconfdir/X11/rstart
+%_x11libdir/X11/rstart
+%config(noreplace) %_sysconfdir/X11/rstart/config
+%_x11bindir/rstart
+%_x11bindir/rstartd
+%_x11bindir/xon
+%_x11mandir/man1/rstart.1x*
+%_x11mandir/man1/rstartd.1x*
+%_x11mandir/man1/xon.1x*
+
+%files xdm
+#%config(noreplace) %_sysconfdir/logrotate.d/xdm
+#%config(noreplace) %_sysconfdir/pam.d/xdm
+%dir %_sysconfdir/X11/app-defaults
+%config(noreplace) %_sysconfdir/X11/app-defaults/Chooser
+%dir %_sysconfdir/X11/xdm
+%dir %attr(0700,root,root) %_sysconfdir/X11/xdm/authdir
+%_x11bindir/xdm
+#%_x11bindir/chooser
+%_x11libdir/X11/xdm
+%_x11mandir/man1/xdm.1x*
+%dir %_localstatedir/lib/xdm
+
+%files xauth
+%_x11bindir/xauth
+%_x11mandir/man1/xauth.1*
+
+%changelog
+* Wed Mar 3 2005 Gleb Golubitsky (Sectoid) <Sectoid_GGV at mail.ru> los1
+- Initial build for Los Angeles GNU/Linux.
+TODO: Double-making build to support 3DFX Glide (tm).
+
+From icesik at mail.ru  Thu Mar  3 23:21:51 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Fri, 4 Mar 2005 00:21:51 +0200
+Subject: [Los-angeles-devel-ru] TEst!
+In-Reply-To: <200503031706.44624.Sysadmin@online.dn.ua>
+References: <200503031636.07330.Sectoid_GGV@mail.ru> <200503031642.44609.icesik@mail.ru> <200503031706.44624.Sysadmin@online.dn.ua>
+Message-ID: <200503040021.53621.icesik@mail.ru>
+
+? ????????? ?? ???????, 03-???-2005 17:06 Sectoid ???????(a):
+> ????? ??? ????????, ? ??? ???????: "%{_x11bindir}/<???-??????>" ??
+> "%_x11bindir/<???-??????>"???
+> ? ??? ??????? ????? ????? ????????????
+
+???????! ???????? ?????? ? ???????? ????? ????????, ?????? ???? ?? ??? 
+????????? ? ??????... ??? ??? ??? ????? ????????.
+
+
+From icesik at mail.ru  Fri Mar  4 00:46:30 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Fri, 4 Mar 2005 01:46:30 +0200
+Subject: [Los-angeles-devel-ru] Spec =?koi8-r?q?=CB?= X.Org
+In-Reply-To: <200503031657.27216.Sysadmin@online.dn.ua>
+References: <200503031636.07330.Sectoid_GGV@mail.ru> <200503031657.27216.Sysadmin@online.dn.ua>
+Message-ID: <200503040146.31651.icesik@mail.ru>
+
+? ????????? ?? ???????, 03-???-2005 16:57 Sectoid ???????(a):
+> ????? ??? ????????, ? ??? ???????: "%{_x11bindir}/<???-??????>" ??
+> "%_x11bindir/<???-??????>"???
+> ? ??? ??????? ????? ????? ????????????
+> ???? ? ?????....
+? ??? ??? ??????? ???????? - ?????? ????????? (1.patch).
+? ???? ??????? ????????... xorg.spec.bz2 ???? ???????????.
+
+??? ??? ??? ?? ??????? ?? ??????????? ????? ???? ?????? ? ???????
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: xorg.spec.orig.bz2
+Type: application/x-bzip2
+Size: 11942 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/los-angeles-devel-ru/attachments/20050304/ef0bd989/attachment.bin>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 1.patch.bz2
+Type: application/x-bzip2
+Size: 6913 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/los-angeles-devel-ru/attachments/20050304/ef0bd989/attachment-0001.bin>
+
+From Sysadmin at online.dn.ua  Fri Mar  4 11:37:07 2005
+From: Sysadmin at online.dn.ua (Sectoid)
+Date: Fri, 4 Mar 2005 12:37:07 +0200
+Subject: [Los-angeles-devel-ru] Spec =?koi8-r?q?=CB?= X.Org
+In-Reply-To: <200503040146.31651.icesik@mail.ru>
+References: <200503031636.07330.Sectoid_GGV@mail.ru> <200503031657.27216.Sysadmin@online.dn.ua> <200503040146.31651.icesik@mail.ru>
+Message-ID: <200503041237.08054.Sysadmin@online.dn.ua>
+
+? ????????? ?? ???????, 04-???-2005 01:46 Igor Zubkov ???????(a):
+> ? ????????? ?? ???????, 03-???-2005 16:57 Sectoid ???????(a):
+> > ????? ??? ????????, ? ??? ???????: "%{_x11bindir}/<???-??????>" ??
+> > "%_x11bindir/<???-??????>"???
+> > ? ??? ??????? ????? ????? ????????????
+> > ???? ? ?????....
+> ? ??? ??? ??????? ???????? - ?????? ????????? (1.patch).
+> ? ???? ??????? ????????... xorg.spec.bz2 ???? ???????????.
+?????.
+
+> ??? ??? ??? ?? ??????? ?? ??????????? ????? ???? ?????? ? ???????
+??? ? ????=) ? ????, ? ?????? ?? ????...
+???? ? ????? ??????????=)
+
+??. ????? ? ?? ?????? ???????? ??? ????? ?? ???? xorg ???? ?????????????? ???? 
+????????????? ?????, ??? ??????? ??? icesik...
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: xorg.spec.patch.bz2
+Type: application/x-bzip2
+Size: 7640 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/los-angeles-devel-ru/attachments/20050304/e40e9a4e/attachment.bin>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: xorg-compile.log.bz2
+Type: application/x-bzip2
+Size: 3316 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/los-angeles-devel-ru/attachments/20050304/e40e9a4e/attachment-0001.bin>
+
+From icesik at mail.ru  Fri Mar  4 14:14:16 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Fri, 4 Mar 2005 15:14:16 +0200
+Subject: [Los-angeles-devel-ru] Fwd: Re: [GNU-RU] =?koi8-r?b?0MXSxdfPxNk=?=
+Message-ID: <200503041514.16085.icesik@mail.ru>
+
+? ???? ?? ????-?? ??????????!!!
+
+----------  ??????????? ?????????  ----------
+
+Subject: Re: [GNU-RU] ????????
+Date: ???????, 04-???-2005 14:58
+From: Dmitry Gusakov <dmitry at tagmet.ru>
+To: Igor Zubkov <icesik at mail.ru>
+Cc: ??????? ??????? ???????? GNU <gnu at mx.ru>
+
+Igor Zubkov wrote:
+> ??????, ???!
+>
+> ??? ???? ??? ?????? ??? ??? ?????????, ?? ??????? ??????? ? ???
+> ??????????????
+>
+> WBR, Igor Zubkov
+> 2:465/385 at fidonet.org
+
+? ??? ?????? ???? ????? ?????????? ?? ????????, ? ?? ??? ??? ?? ??????
+??? ?????? ?? ????? ?????? ;-)
+
+-------------------------------------------------------
+
+
+From icesik at mail.ru  Fri Mar  4 14:42:39 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Fri, 4 Mar 2005 15:42:39 +0200
+Subject: [Los-angeles-devel-ru] update bison to 2.0
+Message-ID: <200503041542.40019.icesik@mail.ru>
+
+Hello, All!
+
+? ?????? ??? ????? ? svn ?????? ???? ??? bison 2.0.
+
+
+From icesik at mail.ru  Fri Mar  4 14:45:20 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Fri, 4 Mar 2005 15:45:20 +0200
+Subject: [Los-angeles-devel-ru] Spec =?koi8-r?q?=CB?= X.Org
+In-Reply-To: <200503041237.08054.Sysadmin@online.dn.ua>
+References: <200503031636.07330.Sectoid_GGV@mail.ru> <200503040146.31651.icesik@mail.ru> <200503041237.08054.Sysadmin@online.dn.ua>
+Message-ID: <200503041545.20044.icesik@mail.ru>
+
+? ????????? ?? ???????, 04-???-2005 12:37 Sectoid ???????(a):
+> > > ????? ??? ????????, ? ??? ???????: "%{_x11bindir}/<???-??????>" ??
+> > > "%_x11bindir/<???-??????>"???
+> > > ? ??? ??????? ????? ????? ????????????
+> > > ???? ? ?????....
+> >
+> > ? ??? ??? ??????? ???????? - ?????? ????????? (1.patch).
+> > ? ???? ??????? ????????... xorg.spec.bz2 ???? ???????????.
+>
+> ?????.
+>
+> > ??? ??? ??? ?? ??????? ?? ??????????? ????? ???? ?????? ? ???????
+>
+> ??? ? ????=) ? ????, ? ?????? ?? ????...
+> ???? ? ????? ??????????=)
+>
+> ??. ????? ? ?? ?????? ???????? ??? ????? ?? ???? xorg ???? ??????????????
+> ???? ????????????? ?????, ??? ??????? ??? icesik...
+
+bison ? ???????. ???????? ??? ???...
+
+p.s.: ???? ????? ??? ??????? ????... ?? ?? ??????.
+
+
+From Sysadmin at online.dn.ua  Fri Mar  4 14:49:22 2005
+From: Sysadmin at online.dn.ua (Sectoid)
+Date: Fri, 4 Mar 2005 15:49:22 +0200
+Subject: [Los-angeles-devel-ru] update bison to 2.0
+In-Reply-To: <200503041542.40019.icesik@mail.ru>
+References: <200503041542.40019.icesik@mail.ru>
+Message-ID: <200503041549.22617.Sysadmin@online.dn.ua>
+
+? ????????? ?? ???????, 04-???-2005 15:42 Igor Zubkov ???????(a):
+> Hello, All!
+>
+> ? ?????? ??? ????? ? svn ?????? ???? ??? bison 2.0.
+> _______________________________________________
+> Los-angeles-devel-ru mailing list
+> Los-angeles-devel-ru at lists.berlios.de
+> http://lists.berlios.de/mailman/listinfo/los-angeles-devel-ru
+??????, ????? ?????????. ??????? flex. ????! 
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: flex-2.5.31-los1.patch
+Type: text/x-diff
+Size: 8927 bytes
+Desc: not available
+URL: <https://lists.berlios.de/pipermail/los-angeles-devel-ru/attachments/20050304/b5c19888/attachment.patch>
+
+From icesik at mail.ru  Fri Mar  4 15:07:00 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Fri, 4 Mar 2005 16:07:00 +0200
+Subject: [Los-angeles-devel-ru] update bison to 2.0
+In-Reply-To: <200503041549.22617.Sysadmin@online.dn.ua>
+References: <200503041542.40019.icesik@mail.ru> <200503041549.22617.Sysadmin@online.dn.ua>
+Message-ID: <200503041607.02689.icesik@mail.ru>
+
+? ????????? ?? ???????, 04-???-2005 15:49 Sectoid ???????(a):
+> > ? ?????? ??? ????? ? svn ?????? ???? ??? bison 2.0.
+>
+> ??????, ????? ?????????. ??????? flex. ????!
+
+;-) ?????? -- ???????????????? ;-))))
+ps.: patch ?????? ????? ? svn.
+
+
+From icesik at mail.ru  Sun Mar  6 21:16:39 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Sun, 6 Mar 2005 22:16:39 +0200
+Subject: [Los-angeles-devel-ru] Spec =?koi8-r?q?=CB?= X.Org
+In-Reply-To: <200503041545.20044.icesik@mail.ru>
+References: <200503031636.07330.Sectoid_GGV@mail.ru> <200503041237.08054.Sysadmin@online.dn.ua> <200503041545.20044.icesik@mail.ru>
+Message-ID: <200503062216.41308.icesik@mail.ru>
+
+? ????????? ?? ???????, 04-???-2005 15:45 Igor Zubkov ???????(a):
+> > > > ????? ??? ????????, ? ??? ???????: "%{_x11bindir}/<???-??????>" ??
+> > > > "%_x11bindir/<???-??????>"???
+> > > > ? ??? ??????? ????? ????? ????????????
+> > > > ???? ? ?????....
+> > >
+> > > ? ??? ??? ??????? ???????? - ?????? ????????? (1.patch).
+> > > ? ???? ??????? ????????... xorg.spec.bz2 ???? ???????????.
+> >
+> > ?????.
+> >
+> > > ??? ??? ??? ?? ??????? ?? ??????????? ????? ???? ?????? ? ???????
+> >
+> > ??? ? ????=) ? ????, ? ?????? ?? ????...
+> > ???? ? ????? ??????????=)
+> >
+> > ??. ????? ? ?? ?????? ???????? ??? ????? ?? ???? xorg ???? ??????????????
+> > ???? ????????????? ?????, ??? ??????? ??? icesik...
+>
+> bison ? ???????. ???????? ??? ???...
+>
+> p.s.: ???? ????? ??? ??????? ????... ?? ?? ??????.
+
+??????????? ????? ????????. ???????????? ? ?????? ?????? dri ????.
+
+p.s.: ???????, ? ?? ???????? ? ?????????????... ?.?. ? chroot. ???????? ?????? 
+???.
+
+
+From icesik at mail.ru  Sun Mar  6 21:19:05 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Sun, 6 Mar 2005 22:19:05 +0200
+Subject: [Los-angeles-devel-ru] task-core
+Message-ID: <200503062219.05324.icesik@mail.ru>
+
+? ?????? ??? ????????? ????? task-core ? ??? ??? ??? ???? ????. ???? ????? ?? 
+???????????? ????? ??? ??????? ?????? (??????? ??? ????????? ??? ?????? 
+chroot ? ??????? ?????????).
+
+
+From icesik at mail.ru  Tue Mar  8 12:10:28 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Tue, 8 Mar 2005 13:10:28 +0200
+Subject: [Los-angeles-devel-ru] Re: [fmII] iptables 1.3.1 released (Default branch)
+In-Reply-To: <20050307190508.581A44817D@mail.freshmeat.net>
+References: <20050307190508.581A44817D@mail.freshmeat.net>
+Message-ID: <200503081310.28765.icesik@mail.ru>
+
+? ????????? ?? ???????????, 07-???-2005 21:05 noreply at freshmeat.net 
+???????(a):
+> This email is to inform you about the release of version '1.3.1' of
+> 'iptables' through freshmeat.net. All URLs and other useful information
+> can be found at
+>
+>     http://freshmeat.net/projects/iptables/
+>
+> The changes in this release are as follows:
+> This release fixes CLUSTERIP rule deletion, libip6t_random
+> compilation, and CONNMARK on 32-bit user space / 64-bit kernel
+> architectures. It makes sure that the order of chains in the listing
+> is the same as it was in the 1.2.x releases.
+>
+> Release focus:
+> 6 - Minor bugfixes
+>
+> Project added:
+> Mon, Mar 20th 2000 03:24 (4 years, 11 months ago)
+>
+> Project description:
+> iptables is built on top of netfilter, the packet alteration framework
+> for Linux 2.4.x and 2.6.x. It is a major rewrite of its predecessor
+> ipchains, and is used to control packet filtering, Network Address
+> Translation (masquerading, portforwarding, transparent proxying), and
+> special effects such as packet mangling.
+>
+> Trove categories:
+> [Development Status  ] 5 - Production/Stable
+> [Environment         ] Console (Text Based)
+> [Intended Audience   ] End Users/Desktop, System Administrators
+> [License             ] OSI Approved :: GNU General Public License (GPL)
+> [Operating System    ] POSIX :: Linux
+> [Programming Language] C
+> [Topic               ] Internet, Security, System :: Networking, System ::
+> Networking :: Firewalls
+>
+> If you would like to cancel subscription to releases of this project,
+> login to freshmeat.net and choose 'home' from the personal menubar at the
+> top of the page. You'll be presented with a list of projects and
+> categories you're subscribed to in the right column, which you may cancel
+> by highlighting the project or category in question and clicking the
+> 'delete' button.
+>
+> Sincerely,
+> freshmeat.net
+>
+
+
+From icesik at mail.ru  Mon Mar 14 16:22:27 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Mon, 14 Mar 2005 17:22:27 +0200
+Subject: [Los-angeles-devel-ru] Fwd: Re: [Comm] =?koi8-r?b?98/Q0s/T2SDOz9fJ3svB?= [JT]
+Message-ID: <200503141722.27496.icesik@mail.ru>
+
+???? ??? ???????? ?-))
+
+----------  ??????????? ?????????  ----------
+
+Subject: Re: [Comm] ??????? ??????? [JT]
+Date: ???????, 08-???-2005 10:31
+From: "Valentin Kozlov" <valek_k at mail.ru>
+To: <community at altlinux.ru>
+
+? ??? ????? ?????? ?????????????? ??????: ????? ?? ?????? ? ??????????
+?????????, ? ? ??????????? ?? ????, ??? ????????? ??????, ????? ???
+????????? ????????? ??????????????? ??? ????????? ??? ???? ??????? /
+????????????. ?????? ????????????. ????? ??? ????????-????? ????????: 5$ -
+?? 20 ??????????, ???????. ? ?????? ???????????? ???????? ????? ???????
+?????????????? ???????????, ???? ?????? ????? ?????? ??, ??? ????????
+????????. ???? ???????????, ??? ??? ??? ????????? ???????? ? ????????? GNU,
+?? ????.
+?????? ?????????? ?????, ?? ??? ?? ??????? ??? ????????????. ????????
+?????????, ??? ????? ??? ??????????????? ??? "??????????? ?????? Windows" ?
+???? ?????????? ???????? ????????????, ?? ????? ?? ???????????? ??????, ??
+????? ?????? ?????????? ? ???????. ???????? ? ???????? ??????? ????, ???
+???? ?? ?? ???????? ???????? ?? ?????? ? ? ????? ?, ?? ?????? ????, ?????
+????? ?????, ??? ???? ?????? ?????? (??? ?? ??? ??????????? ?????????), ??
+??? ??? ??????????? ???? ???????? ?? ??????.
+
+???????? ?? ????????.
+
+??????, ???? ???? ?? ALTLinux Junior 2.3 ? ???? ??? ???? ????????? ? ??????,
+??? ?? ????? ??? ??????? ??????????? ?? ????????? ????????????? (SuSE 9.2,
+RedHat Enterprise (??????????? ?????, ???????????? ???????? ??????)),  ???
+???????? ??????????, ?? ??? ?? ????? ?????????? ??? ??????????? (??? ????,
+?????) ???????, ????????? ?????? ???????? ???, ???????? ?? ?? RedHat
+Fedore/Enterprise.
+
+Best regards,
+Valentin Kozlov
+
+----- Original Message -----
+From: "Vinogradov Anton" <arc13 at rambler.ru>
+To: <community at altlinux.ru>
+Sent: Tuesday, March 08, 2005 9:05
+Subject: Re: [Comm] ??????? ??????? [JT]
+
+> 07.03.05 ? 22:37 Vitaly Lipatov ? ????? ?????? ?????(?):
+>> On Monday 07 March 2005 21:52, Anatol B. Bazjukin wrote:
+>>> Hello Vitaly,
+>>>
+>>> Monday, March 7, 2005, 9:38:20 PM, you wrote:
+>>>
+>>> VL> 1. ??? ????????? ? ?????????????
+>>> VL> 2. ??? ?????? ????????, ??????? ???????????? ?????? ??
+>>> ?????? VL> ???????
+>>> VL> 3. ??? ???????? ? ?????????? ?????????????, ??????? ???
+>>> ????????? VL> ?????.
+>>> ? ????? ???????????? ??????????? ???-?????? ? ???-???????
+>>
+>> ? ???????????? donate ??? ???????????? ???????????????????
+>
+> ? ??!!!
+> ??? ? ???(???) ?????? ? ??????? ?? ???????? ?D ?? ????? updates
+> ? ??????? ??????????? ?? ??????? ????????????? ??????????,
+> ???? ????? ??? ????????????
+> ? ????? ?? ??? ?? $3
+> ALJ/ALC ????????????????? ? ALD, ? ????????????? ? ???????????????
+> ? ?????????????? ??????????????? ???????.
+>
+> ?? ??????? ??? ??? ????????
+>
+> --
+> Anton (ALJ 2.3, i686)
+> _______________________________________________
+> Community mailing list
+> Community at altlinux.ru
+> https://lists.altlinux.ru/mailman/listinfo/community
+
+_______________________________________________
+Community mailing list
+Community at altlinux.ru
+https://lists.altlinux.ru/mailman/listinfo/community
+
+-------------------------------------------------------
+
+
+From icesik at mail.ru  Tue Mar 15 00:57:44 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Tue, 15 Mar 2005 01:57:44 +0200
+Subject: [Los-angeles-devel-ru] =?koi8-r?b?zs/X2cUgySDPws7P18yjzs7ZxSDQwcvF1Nkg1w==?= =?koi8-r?b?INLF0M/aydTP0snJ?=
+Message-ID: <200503150157.44983.icesik@mail.ru>
+
+??????, All!
+
+????? ??? ?????? ?????? ? ????????, ? ???????? ????? ???? ????????!
+
+1) mc-4.6.0-los1 (???????-??!!! ?-) )
+2) fbset
+3) cpuid -- ??????? ????????????? CPU.
+4) manpages-ru -- ??????? ????
+5) screen
+6) ???????????? flex (????? ??????? /usr/share/info/dir ;-( )
+7) ???????????? task-core
+8) fix-info-dir
+9) ??????????? m4 ?? 1.4.2
+10) task-c++-devel
+11) ccache
+12) task-base
+13) task-c-devel
+14) ???????????? syslog-ng
+15) unarj
+16) cpio
+17) slang
+
+
+From icesik at mail.ru  Mon Mar 14 16:24:15 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Mon, 14 Mar 2005 17:24:15 +0200
+Subject: [Los-angeles-devel-ru] Fwd: [Comm] =?koi8-r?b?0M/ExMXS1svBINDPxMTF0tbLxQ==?= =?koi8-r?b?INLP2s7Y?=, =?koi8-r?b?yczJIM8gJDU=?= (was: =?koi8-r?b?98/Q0s/T2Q==?= =?koi8-r?b?IM7P18ney8E=?=)
+Message-ID: <200503141724.15980.icesik@mail.ru>
+
+??????????? ?????.... 
+
+----------  ??????????? ?????????  ----------
+
+Subject: [Comm] ????????? ????????? ?????, ??? ? $5 (was: ??????? ???????)
+Date: ?????, 09-???-2005 15:44
+From: Michael Shigorin <mike at osdn.org.ua>
+To: community at altlinux.ru
+
+On Tue, Mar 08, 2005 at 09:31:55AM +0100, Valentin Kozlov wrote:
+> ? ??? ????? ?????? ?????????????? ??????: ????? ?? ?????? ?
+> ?????????? ?????????, ? ? ??????????? ?? ????, ??? ?????????
+> ??????, ????? ??? ????????? ????????? ??????????????? ???
+> ????????? ??? ???? ??????? / ????????????. ?????? ????????????.
+> ????? ??? ????????-????? ????????: 5$ - ?? 20 ??????????,
+> ???????.
+
+?????? ?????? ?????.  ??? ?????????, synce ????? ???? (??, ?????)
+??????? ???, ??? ?????????? ?????? -- ?????, ??? ?? ??????
+???????-??? ?? 5--6 ???????.  ? ??? ?? ???? (?? ??????
+???????????? ??? ?????????), ??????? ???????? ????????? ??? ???
+(??????? 12--15 ??????? ?????, ?????) ?? initial packaging.
+
+? ????? ??? ????????? ????? -- ?? synce-kde ? ???????? ??
+??????????? ?????????? ?????? ? hotplug ?? ???????.
+
+??? ???? ??? ??? ???????? ??????, ?? ?????? ??? ?????? ????? ??
+$5/20*6.
+
+> ? ?????? ???????????? ???????? ????? ??????? ??????????????
+> ???????????, ???? ?????? ????? ?????? ??, ??? ????????
+> ????????. ???? ???????????, ??? ??? ??? ????????? ???????? ?
+> ????????? GNU, ?? ????.
+
+?? ??? ? ??? ??????.
+
+> ?????? ?????????? ?????, ?? ??? ?? ??????? ??? ????????????.
+> ???????? ?????????, ??? ????? ??? ??????????????? ???
+> "??????????? ?????? Windows" ? ???? ?????????? ????????
+> ????????????, ?? ????? ?? ???????????? ??????, ?? ????? ??????
+> ?????????? ? ???????.
+
+?????? ????????? ????????; ???-?? ????? ??? ?????? ??? ????,
+???????? -- ?? ???? ??????, ???????? ??????.  ? ?????? ????.
+
+> ???????? ? ???????? ??????? ????, ??? ???? ?? ?? ????????
+> ???????? ?? ?????? ? ? ????? ?, ?? ?????? ????, ????? ?????
+> ?????, ??? ???? ?????? ?????? (??? ?? ??? ???????????
+> ?????????), ?? ??? ??? ??????????? ???? ???????? ?? ??????.
+
+?? ?????? ??, ????? ????? -- ?? support@ ??? ?????????.
+?? ??? ????? ????? ?? $5 ?? 100 ?? (???????), ?????? ??? ?? $40.
+???? ?? ??????? ??????.
+
+???????? ? ???, ??? ???? ?????? ????????? ????? -- ???????
+????????? ? ?????? ?????? _????_, ? ????? ?? ????????.
+
+> ???????? ?? ????????.
+
+?? ??? ?????????.  ?????? ??????? ???? ??????: ????????-??????
+?? RS485 ???? ????? ?? ????????? ?? $5 ?? ????? ??????.
+???? ???????? ?????? (???????? ? ??????? ????????????, ? ?????
+??????), ???? -- ???????? (?????????? ?????????? ? ?????????
+?????????? ????????????? ?????? ??????????).
+
+--
+ ---- WBR, Michael Shigorin <mike at altlinux.ru>
+  ------ Linux.Kiev http://www.linux.kiev.ua/
+_______________________________________________
+Community mailing list
+Community at altlinux.ru
+https://lists.altlinux.ru/mailman/listinfo/community
+
+-------------------------------------------------------
+
+
+From icesik at mail.ru  Tue Mar 15 01:00:57 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Tue, 15 Mar 2005 02:00:57 +0200
+Subject: [Los-angeles-devel-ru] =?koi8-r?b?0M/MydPJIM/Uzs/TydTFzNjOzw==?= =?koi8-r?b?INDB1N7Fyg==?=
+Message-ID: <200503150200.57757.icesik@mail.ru>
+
+patches.txt -- ???????? ???????????? ??????:
+
++++ policy/patches.txt  (revision 0)
+@@ -0,0 +1,25 @@
++# $Id$
++
++???????? ???????????? ??????:
++
++1) ??? ????? ?????? ???? ????:
++[??? ?????]_[NAME]-[VERSION]-[ORIGIN]-[WHAT].patch
++
++[??? ?????] -- ??????? ???????????? ????? (001,002 ... 999)
++[NAME] -- ??? ?????? ?? ??????? ??????? ????
++[VERSION] -- ?????? ?????? ?? ??????? ?????? ????
++[ORIGIN] -- ???????????? ????????? ????? (?????? ???????????)
++[WHAT] -- ??????? ???????? ?????
++
++.patch -- ???????????.
++
++?????????? ??? ORIGIN:
++    -rh- RedHat (http://www.redhat.com/)
++    -mdk- Mandrake
++    -debian- Debian (http://www.debian.org/)
++    -alt- ALTLinux (http://www.altlinux.ru/)
++    -asp- ASPLinux (http://www.asplinux.ru/)
++    -fdr- Fedora
++    -pld- PLD Linux (http://www.pld.org.pl/)
++
++?? ? Los Angeles - -los-.
+
+p.s.: commited!
+
+
+From icesik at mail.ru  Wed Mar 16 17:18:15 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Wed, 16 Mar 2005 18:18:15 +0200
+Subject: [Los-angeles-devel-ru] xorg initial inport
+Message-ID: <200503161818.17414.icesik@mail.ru>
+
+? svn ??????? ?????? ??????? ???? ??? ?????? xorg-6.8.2.
+
+p.s.: ? ???? ?????????? ;-)
+
+
+From icesik at mail.ru  Wed Mar 16 18:39:46 2005
+From: icesik at mail.ru (Igor Zubkov)
+Date: Wed, 16 Mar 2005 19:39:46 +0200
+Subject: [Los-angeles-devel-ru] Fwd: Re: [sisyphus] =?koi8-r?b?8M/exc3VIGdsaWIyINrB18nTydQgz9Q=?= gnome
+Message-ID: <200503161939.46710.icesik@mail.ru>
+
+
+
+----------  ??????????? ?????????  ----------
+
+Subject: Re: [sisyphus] ?????? glib2 ??????? ?? gnome
+Date: ?????, 16-???-2005 19:05
+From: "Yuri N. Sedunov" <aris at altlinux.ru>
+To: ALT Linux Sisyphus discussion list <sisyphus at altlinux.ru>
+
+? ???, 16/03/2005 ? 17:55 +0300, Ruslan Popov ?????:
+> rpopov at nemo:~/RPM/SOURCES$ LANG=C rpm -bb glib2.spec
+> error: failed build dependencies:
+>        gnome-common >= 2.8.0 is needed by glib2-2.6.3-alt1
+>
+> ??? ??? ????????
+> ? ?????? ???????? glib2 ??????? ?? gnome???
+
+????????? -- ?????, ???????? ???.
+
+--
+Yuri N. Sedunov
+
+-------------------------------------------------------
+
+
+-------------- next part --------------
+_______________________________________________
+Sisyphus mailing list
+Sisyphus at altlinux.ru
+https://lists.altlinux.ru/mailman/listinfo/sisyphus
+
